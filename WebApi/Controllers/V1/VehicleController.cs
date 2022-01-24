@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.V1
 {
+    //Use MapToVersion for some examples of having an endpoint versioned
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]

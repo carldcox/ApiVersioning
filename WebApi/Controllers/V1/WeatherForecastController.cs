@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.Models;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers.V1
 {
     [ApiController]
     [ApiVersion("1.0")]
