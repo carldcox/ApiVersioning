@@ -27,6 +27,15 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            //Add in Microsoft's Api Versioning library and configure some defaults 
+            services.AddApiVersioning(setup =>
+            {
+                setup.DefaultApiVersion = new ApiVersion(1, 0);//Default Api Version
+                setup.AssumeDefaultVersionWhenUnspecified = true;//Make any unversioned call use the default
+                setup.ReportApiVersions = true;//Adds api-supported-versions header to all responses
+            });
+            
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" }); });
         }
 

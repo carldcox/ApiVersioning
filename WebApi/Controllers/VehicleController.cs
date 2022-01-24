@@ -7,7 +7,9 @@ using WebApi.Models;
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route("api/[controller]")]// Now used for backwards compatability
     public class VehicleController : Controller
     {
         private static IEnumerable<Vehicle> Vehicles = new List<Vehicle> {
