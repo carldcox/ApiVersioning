@@ -7,6 +7,8 @@ using WebApi.Models;
 namespace WebApi.Controllers.V1
 {
     //Use MapToVersion for some examples of having an endpoint versioned
+    //TODO How do we version a method vs the entire controller
+    //if v1 has method a and v2 is missing method a will calling v2->a default to v1->a?
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
