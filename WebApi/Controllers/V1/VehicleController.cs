@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.Models;
@@ -21,10 +22,14 @@ namespace WebApi.Controllers.V1
         };
 
         private readonly ILogger<VehicleController> _logger;
+        private readonly IMediator _mediator;
 
-        public VehicleController(ILogger<VehicleController> logger)
+        public VehicleController(
+            ILogger<VehicleController> logger,
+            IMediator mediator)
         {
             _logger = logger;
+            _mediator = mediator;
         }
 
         [HttpGet]
