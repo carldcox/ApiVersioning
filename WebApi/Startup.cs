@@ -75,14 +75,15 @@ namespace WebApi
             services.AddSwaggerGen();
             services.ConfigureOptions<ConfigureSwaggerOptions>();
 
-            var connectionString = "DataSource=file:memdb1?mode=memory&cache=shared";
+            var connectionString = "Data Source=Sharable;Mode=Memory;Cache=Shared";
             var keepAliveConnection = new SqliteConnection(connectionString);
             keepAliveConnection.Open();
+            
             services.AddDbContext<MemoryDbContext>(options =>
             {
-                options.UseSqlite(keepAliveConnection);
+                options.UseSqlite(connectionString);
             });
-            
+
             services.AddMediatR(typeof(AddVehicleCommandHandler).Assembly);
             
             //Add basic repositories
