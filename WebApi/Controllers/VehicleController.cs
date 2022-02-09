@@ -7,14 +7,14 @@ using Microsoft.Extensions.Logging;
 using Models.CQRS.Vehicle.Commands;
 using Models.CQRS.Vehicle.Queries;
 
-namespace WebApi.Controllers.V1
+namespace WebApi.Controllers
 {
     //Use MapToVersion for some examples of having an endpoint versioned
     //TODO How do we version a method vs the entire controller
     //if v1 has method a and v2 is missing method a will calling v2->a default to v1->a?
     [ApiController]
-    [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    // [ApiVersion("1.0")]
+    // [Route("api/v{version:apiVersion}/[controller]")]
     [Route("api/[controller]")]// Now used for backwards compatability
     public class VehicleController : Controller
     {

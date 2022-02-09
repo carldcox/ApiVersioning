@@ -14,11 +14,17 @@ namespace Models.CQRS.Vehicle.Handlers
         {
             _context = context;
         }
-        public Task<Data.Vehicle.Vehicle> Handle(AddVehicleCommand request, CancellationToken cancellationToken)
+        public async Task<Data.Vehicle.Vehicle> Handle(AddVehicleCommand request, CancellationToken cancellationToken)
         {
             if (request == null) return null;
             
+            var vehicle = new Data.Vehicle.Vehicle { BodyType = request.Type, ModelName = request.ModelName };
             
+            var result = await _context.Set<Data.Vehicle.Vehicle>().AddAsync(vehicle, cancellationToken);
+
+            await _context.SaveChangesAsync(cancellationToken);
+
+            return result.Entity;
         }
     }
 }
