@@ -110,6 +110,11 @@ namespace WebApi
                             $"WebApi {description.GroupName.ToUpperInvariant()}");
                     }
                 });
+                
+                //Set up Sqlite
+                using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+                var context = serviceScope.ServiceProvider.GetRequiredService<MemoryDbContext>();
+                context.Database.EnsureCreated();
             }
 
             app.UseHttpsRedirection();
