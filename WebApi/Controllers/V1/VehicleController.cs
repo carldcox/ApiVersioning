@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
+using Data.Vehicle;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using WebApi.Models;
+using Models.CQRS.Vehicle.Commands;
+using Models.CQRS.Vehicle.Queries;
 
 namespace WebApi.Controllers.V1
 {
@@ -16,11 +18,6 @@ namespace WebApi.Controllers.V1
     [Route("api/[controller]")]// Now used for backwards compatability
     public class VehicleController : Controller
     {
-        private static IEnumerable<Vehicle> Vehicles = new List<Vehicle> {
-            new Vehicle(id: 1, bodyType: BodyType.Truck, modelName: "Silverado"),
-            new Vehicle(id: 2, bodyType: BodyType.Suv, modelName: "Suburban")
-        };
-
         private readonly ILogger<VehicleController> _logger;
         private readonly IMediator _mediator;
 
@@ -33,23 +30,24 @@ namespace WebApi.Controllers.V1
         }
 
         [HttpGet]
-        public IEnumerable<Vehicle> GetAllVehicles()
+        public async Task<IEnumerable<Vehicle>> GetAllVehicles()
         {
-            return Vehicles;
+            var result = await _mediator.Send(new GetAllVehiclesQuery());
+            return result;
         }
 
         [HttpGet("{id}")]
-        public Vehicle Get([FromQuery] int id)
+        public async Task<Vehicle> Get([FromQuery] int id)
         {
-            return Vehicles.FirstOrDefault(x => x.Id == id);
+            var result = await _mediator.Send(new GetVehicleByIdQuery(id));
+            return result;
         }
 
         [HttpPost]
-        public Vehicle CreateNewVehicle([FromBody] Vehicle vehicle)
+        public async Task<Vehicle> CreateNewVehicle(AddVehicleCommand command)
         {
-            Vehicles = Vehicles.Append(vehicle);
-
-            return vehicle;
+            var result = await _mediator.Send(command);
+            return result;
         }
     }
 }

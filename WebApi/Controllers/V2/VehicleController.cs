@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Data.Vehicle;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebApi.Models;
@@ -11,11 +12,6 @@ namespace WebApi.Controllers.V2
     [Route("api/v{version:apiVersion}/[controller]")]
     public class VehicleController : Controller
     {
-        private static IEnumerable<Vehicle> Vehicles = new List<Vehicle> {
-            new Vehicle(id: 1, bodyType: BodyType.Truck, modelName: "Silverado"),
-            new Vehicle(id: 2, bodyType: BodyType.Suv, modelName: "Suburban")
-        };
-        
         private readonly ILogger<VehicleController> _logger;
 
         public VehicleController(ILogger<VehicleController> logger)
