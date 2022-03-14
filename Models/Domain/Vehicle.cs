@@ -1,4 +1,4 @@
-﻿namespace Data.Vehicle
+﻿namespace Models.Domain
 {
     public class Vehicle
     {

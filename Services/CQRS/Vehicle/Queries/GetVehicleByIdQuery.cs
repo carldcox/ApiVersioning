@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace Models.CQRS.Vehicle.Queries
+namespace Services.CQRS.Vehicle.Queries
 {
-    public class GetVehicleByIdQuery : IRequest<Data.Vehicle.Vehicle>
+    public class GetVehicleByIdQuery : IRequest<Models.Domain.Vehicle>
     {
         public readonly int VehicleId;
 

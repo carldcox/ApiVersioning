@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Models.CQRS.Vehicle.Queries;
+using Services.CQRS.Vehicle.Queries;
 
-namespace Models.CQRS.Vehicle.Handlers
+namespace Services.CQRS.Vehicle.Handlers
 {
-    public class GetVehicleByIdQueryHandler : IRequestHandler<GetVehicleByIdQuery, Data.Vehicle.Vehicle>
+    public class GetVehicleByIdQueryHandler : IRequestHandler<GetVehicleByIdQuery, Models.Domain.Vehicle>
     {
         private readonly MemoryDbContext _context;
 
@@ -16,7 +16,7 @@ namespace Models.CQRS.Vehicle.Handlers
             _context = context;
         }
         
-        public async Task<Data.Vehicle.Vehicle> Handle(GetVehicleByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Models.Domain.Vehicle> Handle(GetVehicleByIdQuery request, CancellationToken cancellationToken)
         {
             return await _context.Vehicles.FirstOrDefaultAsync(v => v.Id == request.VehicleId, cancellationToken);
         }

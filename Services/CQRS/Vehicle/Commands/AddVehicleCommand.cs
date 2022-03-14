@@ -1,9 +1,9 @@
-﻿using Data.Vehicle;
-using MediatR;
+﻿using MediatR;
+using Models.Domain;
 
-namespace Models.CQRS.Vehicle.Commands
+namespace Services.CQRS.Vehicle.Commands
 {
-    public class AddVehicleCommand : IRequest<Data.Vehicle.Vehicle>
+    public class AddVehicleCommand : IRequest<Models.Domain.Vehicle>
     {
         public string ModelName { get; set; }
         public BodyType Type { get; set; }

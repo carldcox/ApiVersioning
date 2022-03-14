@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Data.Vehicle;
+using Models.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Models.CQRS.Vehicle.Commands;
-using Models.CQRS.Vehicle.Queries;
+using Services.CQRS.Vehicle.Commands;
+using Services.CQRS.Vehicle.Queries;
 
 namespace WebApi.Controllers
 {

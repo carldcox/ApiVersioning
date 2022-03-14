@@ -9,7 +9,7 @@ namespace Data
             : base(options)
         { }
         
-        public virtual DbSet<Vehicle.Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Models.Domain.Vehicle> Vehicles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

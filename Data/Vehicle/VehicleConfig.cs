@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Models.Domain;
 
 namespace Data.Vehicle
 {
-    public class VehicleConfig : IEntityTypeConfiguration<Vehicle>
+    public class VehicleConfig : IEntityTypeConfiguration<Models.Domain.Vehicle>
     {
-        public void Configure(EntityTypeBuilder<Vehicle> builder)
+        public void Configure(EntityTypeBuilder<Models.Domain.Vehicle> builder)
         {
             builder.HasKey(v => v.Id);
             
@@ -13,8 +14,8 @@ namespace Data.Vehicle
                 .IsRequired();
 
             builder.HasData(
-                new Vehicle { Id = 1, BodyType = BodyType.Truck, ModelName = "Silverado" },
-                new Vehicle { Id = 2, BodyType = BodyType.Suv, ModelName = "Suburban" }
+                new Models.Domain.Vehicle { Id = 1, BodyType = BodyType.Truck, ModelName = "Silverado" },
+                new Models.Domain.Vehicle { Id = 2, BodyType = BodyType.Suv, ModelName = "Suburban" }
             );
         }
     }
